@@ -10,6 +10,7 @@
   "use strict";
 
   var SECTION_ID = "ss-services";
+  var PARCEL_ID = "ss-parcel";
 
   // Inline SVG icons (stroke = currentColor), simple + on-brand.
   var ICONS = {
@@ -62,9 +63,56 @@
       "#" + SECTION_ID + " .ssx-card p{font-size:15px;line-height:1.6;color:rgba(15,29,46,.70);margin:0 0 20px;}",
       "#" + SECTION_ID + " .ssx-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#0F1D2E;text-decoration:none;}",
       "#" + SECTION_ID + " .ssx-link:hover{color:#F0602A;}",
-      "@media(max-width:900px){#" + SECTION_ID + " .ssx-grid{grid-template-columns:1fr;}#" + SECTION_ID + "{padding:72px 20px;}}"
+      "@media(max-width:900px){#" + SECTION_ID + " .ssx-grid{grid-template-columns:1fr;}#" + SECTION_ID + "{padding:72px 20px;}}",
+      // ---- Parcel section (navy, distinct offering) ----
+      "#" + PARCEL_ID + "{background:#0F1D2E;color:#F5F3EE;font-family:'DM Sans','DM Sans Placeholder',sans-serif;padding:96px 24px;box-sizing:border-box;}",
+      "#" + PARCEL_ID + " .ssp-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}",
+      "#" + PARCEL_ID + " .ssp-eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F0602A;margin:0 0 14px;}",
+      "#" + PARCEL_ID + " h2{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin:0 0 18px;}",
+      "#" + PARCEL_ID + " .ssp-lead{font-size:17px;line-height:1.6;color:rgba(245,243,238,.78);margin:0 0 28px;}",
+      "#" + PARCEL_ID + " .ssp-points{list-style:none;padding:0;margin:0 0 32px;display:grid;gap:14px;}",
+      "#" + PARCEL_ID + " .ssp-points li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:rgba(245,243,238,.88);}",
+      "#" + PARCEL_ID + " .ssp-check{flex:none;width:20px;height:20px;border-radius:999px;background:#F0602A;color:#0F1D2E;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px;}",
+      "#" + PARCEL_ID + " .ssp-cta{display:inline-flex;align-items:center;gap:8px;background:#F5F3EE;color:#0F1D2E;font-size:15px;font-weight:600;padding:14px 24px;border-radius:10px;text-decoration:none;transition:background .2s ease;}",
+      "#" + PARCEL_ID + " .ssp-cta:hover{background:#F0602A;color:#fff;}",
+      "#" + PARCEL_ID + " .ssp-rate{background:rgba(245,243,238,.06);border:1px solid rgba(245,243,238,.14);border-radius:18px;padding:34px;}",
+      "#" + PARCEL_ID + " .ssp-rate .ssp-rk{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,243,238,.6);margin:0 0 8px;}",
+      "#" + PARCEL_ID + " .ssp-rate .ssp-big{font-size:clamp(34px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:0 0 6px;}",
+      "#" + PARCEL_ID + " .ssp-rate .ssp-note{font-size:13px;color:rgba(245,243,238,.6);margin:0 0 22px;}",
+      "#" + PARCEL_ID + " .ssp-rate .ssp-row{display:flex;justify-content:space-between;font-size:14px;padding:12px 0;border-top:1px solid rgba(245,243,238,.10);}",
+      "#" + PARCEL_ID + " .ssp-rate .ssp-row span:last-child{color:#F0602A;font-weight:600;}",
+      "@media(max-width:900px){#" + PARCEL_ID + " .ssp-inner{grid-template-columns:1fr;gap:36px;}#" + PARCEL_ID + "{padding:72px 20px;}}"
     ].join("");
     document.head.appendChild(st);
+  }
+
+  function buildParcel() {
+    var sec = document.createElement("section");
+    sec.id = PARCEL_ID;
+    sec.innerHTML =
+      '<div class="ssp-inner">' +
+        "<div>" +
+          '<p class="ssp-eyebrow">Parcel &amp; last mile</p>' +
+          "<h2>Parcel delivery, direct to your customers.</h2>" +
+          '<p class="ssp-lead">Not every shipment is a pallet. ShipSpree delivers individual parcels straight to your customers’ doors — at the most competitive rates we can source, with the same clear tracking you get on freight.</p>' +
+          '<ul class="ssp-points">' +
+            '<li><span class="ssp-check">✓</span><span>Most competitive parcel rates we can source, compared across carriers for each shipment.</span></li>' +
+            '<li><span class="ssp-check">✓</span><span>Direct-to-customer delivery — residential or business addresses.</span></li>' +
+            '<li><span class="ssp-check">✓</span><span>Tracking and delivery confirmation passed straight through to you.</span></li>' +
+            '<li><span class="ssp-check">✓</span><span>One point of contact for parcels and freight together.</span></li>' +
+          "</ul>" +
+          '<a class="ssp-cta" href="./#quote">Get a parcel rate →</a>' +
+        "</div>" +
+        '<div class="ssp-rate" aria-hidden="true">' +
+          '<p class="ssp-rk">Competitive rates</p>' +
+          '<p class="ssp-big">Best available</p>' +
+          '<p class="ssp-note">We shop carriers per shipment so you don’t overpay.</p>' +
+          '<div class="ssp-row"><span>Rate comparison</span><span>Every parcel</span></div>' +
+          '<div class="ssp-row"><span>Delivery</span><span>Direct to door</span></div>' +
+          '<div class="ssp-row"><span>Tracking</span><span>Included</span></div>' +
+        "</div>" +
+      "</div>";
+    return sec;
   }
 
   function build() {
@@ -92,12 +140,18 @@
   }
 
   function inject() {
-    if (document.getElementById(SECTION_ID)) return; // already present
-    // Anchor: the "Live tracking preview" section — insert our section before it.
+    // Anchor: the "Live tracking preview" section — insert our sections before it.
     var anchor = document.querySelector('[data-framer-name="Live tracking preview"]');
     if (!anchor || !anchor.parentNode) return;
     css();
-    anchor.parentNode.insertBefore(build(), anchor);
+    // Specialized services section.
+    if (!document.getElementById(SECTION_ID)) {
+      anchor.parentNode.insertBefore(build(), anchor);
+    }
+    // Parcel section — right after services, before the tracking preview.
+    if (!document.getElementById(PARCEL_ID)) {
+      anchor.parentNode.insertBefore(buildParcel(), anchor);
+    }
   }
 
   function boot() {
